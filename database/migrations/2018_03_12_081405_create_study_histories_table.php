@@ -13,9 +13,10 @@ class CreateStudyHistoriesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('study_histories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
+            $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
             $table->date('start_at');
             $table->date('end_at');
