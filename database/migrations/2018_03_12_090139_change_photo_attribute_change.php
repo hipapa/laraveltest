@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePeopleTable extends Migration
+class ChangePhotoAttributeChange extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePeopleTable extends Migration
      */
     public function up()
     {
-        Schema::create('people', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
+      Schema::table('students', function (Blueprint $table) {
+          $table->longText('photo')->change();
+      });
+
     }
 
     /**
@@ -26,6 +26,8 @@ class CreatePeopleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('people');
+      Schema::table('students', function (Blueprint $table) {
+          $table->string('photo')->change();
+      });
     }
 }
